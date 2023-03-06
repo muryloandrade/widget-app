@@ -1,8 +1,12 @@
 import { Router } from "./Routes/routes"
+import { GlobalStyle } from "./global"
 
 function App() {
   return (
-    <Router/>
+    <>
+      <GlobalStyle/>
+      <Router/>
+    </>
   )
 }
 
