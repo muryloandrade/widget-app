@@ -1,7 +1,21 @@
+import { useNavigate } from 'react-router-dom'
+import { ButtonMenuBar, MenuBarDiv, OrderButton } from './Menu-styled'
+
 export function MenuBar(): JSX.Element {
+  const navigate = useNavigate()
+  
+
+
   return (
-    <div className="MenuBar">
-      <h1>MenuBar</h1>
-    </div>
+    <MenuBarDiv>
+      <OrderButton>
+        <ButtonMenuBar onClick={() => navigate('/')}>
+          Dashboard
+        </ButtonMenuBar>
+        <ButtonMenuBar onClick={() => navigate('/widget')}>
+          Widget
+        </ButtonMenuBar>
+      </OrderButton>
+    </MenuBarDiv>
   )
 }
