@@ -1,6 +1,6 @@
 import GridLayout from 'react-grid-layout'
 import { IWidget } from '../../interface/IWidget'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 
@@ -17,20 +17,8 @@ export const WidgetLayout = () => {
         })
     }, [])
 
-    const saveLayout = useCallback(() => {
-        axios.post(`http://localhost:3001/layoutWidget`, layout)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        }
-        )
-    }, [layout])
-
     return(
       <>
-        <button onClick={() => saveLayout()}>Salvar</button>
         <GridLayout
               cols={12}
               rowHeight={30}
