@@ -1,7 +1,7 @@
 import GridLayout from 'react-grid-layout'
 import { IWidget } from '../../interface/IWidget'
 import { useCallback, useState } from 'react'
-import { useGetWidgetsQuery } from '../../services/widget'
+import { useGetWidgetsQuery, usePostWidgetMutation } from '../../services/widget'
 
 
 export const WidgetLayout = () => {
@@ -9,22 +9,16 @@ export const WidgetLayout = () => {
     const onLayoutChange = (layout: any): void => {
         setLayout(layout)
       }
-    const {data, error, isLoading} = useGetWidgetsQuery('widgetRTK')
-    
-    if(data){
-        setLayout(data)
-    }
-    // if(isLoading){
-    //     return <div>Loading...</div>
-    // }
-    // if(error){
-    //     return <div>Error</div>
-    // }
+
+    const [testeSave] = usePostWidgetMutation()
+
+    const {data,isSuccess} = useGetWidgetsQuery("teste")
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const addWidget = useCallback(() => {
         const newWidget = {
-            i: 'newWidget',
+            i: layout.length.toString(),
             x: 0,
             y: 0,
             w: 1,
@@ -35,11 +29,19 @@ export const WidgetLayout = () => {
         setLayout([...layout, newWidget])
     }, [layout])
 
-    console.log(layout)
+    const saveLayout = useCallback(() => {
+        try{
+             testeSave(layout)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }, [layout, testeSave])
     
     return(
       <>
         <button onClick={() => addWidget()}>Adicionar um widget</button>
+        <button onClick={() => saveLayout()}>Salvar</button>
         <GridLayout
               cols={12}
               rowHeight={30}
@@ -50,10 +52,8 @@ export const WidgetLayout = () => {
               >
                 {layout.map((widget, i) => {
                     return(
-                        <div key={i} data-grid={widget} style={{backgroundColor:"white"}}>
-                        <div>
+                        <div key={widget.i} data-grid={widget} style={{backgroundColor:"white"}}>
                             <h1>Widget</h1>
-                        </div>
                     </div>
                     )
                 }
