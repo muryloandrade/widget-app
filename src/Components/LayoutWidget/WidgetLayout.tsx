@@ -1,7 +1,6 @@
 import GridLayout from 'react-grid-layout'
 import { IWidget } from '../../interface/IWidget'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useState } from 'react'
 
 
 export const WidgetLayout = () => {
@@ -10,12 +9,6 @@ export const WidgetLayout = () => {
         setLayout(layout)
       }
 
-    useEffect(() => {
-        axios.get('http://localhost:3001/layoutWidget')
-        .then(response => {
-            setLayout(response.data)
-        })
-    }, [])
 
     return(
       <>
