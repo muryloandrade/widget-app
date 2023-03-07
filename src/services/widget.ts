@@ -6,7 +6,7 @@ export const widgetApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000'}),
     tagTypes: ['Widgets'],
     endpoints: (builder) => ({
-        getWidgets: builder.query<IWidget, string>({
+        getWidgets: builder.query<IWidget[], string>({
             query: () => `/widgets`,
             providesTags: ['Widgets'],
         }),
