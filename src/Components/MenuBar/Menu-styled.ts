@@ -20,9 +20,9 @@ export const OrderButton = styled.div`
 `
 
 export const ButtonMenuBar = styled.button`
-    background-color: #F2F2F2;
-    border: none;
+    border: 1px solid #F2F2F2;
     border-radius: 5px;
+    background-color: grey;
     width: 5%;
     height: 80%;
     display: flex;
@@ -32,6 +32,7 @@ export const ButtonMenuBar = styled.button`
     cursor: pointer;
     transition: 0.2s;
     &:hover{
-        background-color: #E5E5E5;
+        background-color: #F2F2F2;
+
     }   
 `
